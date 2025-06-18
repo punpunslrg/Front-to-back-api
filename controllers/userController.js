@@ -1,5 +1,16 @@
-export async function listUser(req, res) {
-  res.json({ message: "This is List All User" })
+import { createError } from "../utils/createError.js"
+
+export async function listUser(req, res, next) {
+  try {
+    if(true){
+      createError(400, "Email is already exists")
+    } else {
+      throw new Error('Password is invalid !!')
+    }
+    res.json({ message: "This is List All User" })
+  } catch (error) {
+    next(error)
+  }
 }
 
 export async function readUser(req, res) {

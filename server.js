@@ -23,6 +23,11 @@ app.use(express.json()) // for read body
 app.use('/api', userRouter)
 app.use('/auth', authRouter)
 
+// Error Handling
+app.use((err, req, res, next) => {
+  res.status(err.code || 500).json({ message: err.message || "Something Wrong !!" })
+})
+
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server is running at ${PORT}`);
